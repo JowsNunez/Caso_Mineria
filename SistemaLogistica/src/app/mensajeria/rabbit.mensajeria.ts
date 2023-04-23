@@ -8,15 +8,16 @@ import {
 import { Injectable } from '@angular/core';
 import { RxStompService } from "./stomp.service";
 import { Observable, Subject } from "rxjs"
+import { environment } from "src/environments/environment";
 
 
 /**
- * @class @RabbitMensajeriarabbitFactory Clase concreta que implementa los métodos de las interface MensajeriarabbitFactory
+ * @class @RabbitMensajeriaFactory Clase concreta que implementa los métodos de las interface MensajeriarabbitFactory
  */
 @Injectable({
     providedIn: 'root'
 })
-export class RabbitMensajeriarabbitFactory implements MensajeriaFactory {
+export class RabbitMensajeriaFactory implements MensajeriaFactory {
     /**
      * 
      * @param stompService dependencia que representa al servicio de mensajeria de rabbit de la libreria {@stomop/rx-stomp}
@@ -54,9 +55,19 @@ export class RabbitEnviadorMensaje extends AbstractEnviadorMensajeria {
      * @param cola representa el nombre de la __queue, exchange__ 
      * @param mensaje  representa el contenido a enviar
      */
-    public override enviar(cola: string, mensaje: Mensaje): void {
+    public override enviar(mensaje: Mensaje, cola: string,): void {
+        let destination = environment.exchangeEnvios;
+        let headers = {};
 
-        this.serviceStomp.publish({ destination: cola, body: mensaje.data })
+        if (cola) {
+            //TODO: refactorizar
+            destination += "/" + cola
+            headers = { key: cola };
+        }
+
+        
+
+        this.serviceStomp.publish({ destination: destination,/**headers**/ body: mensaje.data })
     }
 
 }
@@ -72,12 +83,26 @@ export class RabbitReceptorMensaje extends AbstractReceptorMensajeria {
      * @param cola representa la cola de la cual se espera un mensaje
      * @returns devuelve un Observable de la libreria RxJS de tipo Mensaje
      */
-    public override  recibir(cola: string): Observable<Mensaje> {
+    public override  recibir(cola?: string): Observable<Mensaje> {
         const subject = new Subject<Mensaje>();
 
-        this.serviceStomp.watch(cola).subscribe(msg => {
+        let destination = environment.queueRecibidos;
+        let headers = {};
+
+        if (cola) {
+            //TODO: refactorizar
+            destination += cola
+            headers = { key: cola };
+        }
+
+
+
+        this.serviceStomp.watch({ destination: destination,/**subHeaders:headers**/ }).subscribe(msg => {
+
             const mensaje: Mensaje = { data: msg.body };
+            console.log(mensaje)
             subject.next(mensaje);
+
         });
 
         return subject.asObservable();
@@ -101,7 +126,7 @@ export class RabbitDespachadorMensaje implements DespachadorMensajeria {
      * y  {@link enviadror: AbstractEnviadorMensajeria} 
      * @param rabbitFactory Representa el factory para instancias de Envio y Recepcion de Mensajes
      */
-    constructor(private rabbitFactory: RabbitMensajeriarabbitFactory) {
+    constructor(private rabbitFactory: RabbitMensajeriaFactory) {
 
         this.enviador = this.rabbitFactory.crearEnviadorMensajeria()
         this.receptor = this.rabbitFactory.crearReceptorMensajeria()
@@ -119,7 +144,10 @@ export class RabbitDespachadorMensaje implements DespachadorMensajeria {
      *  @example Ejemplo para enviar a una queue /queue/{nombre_queue}
      */
     public enviar(cola: string, mensaje: Mensaje) {
-        this.enviador.enviar(cola, mensaje);
+
+        if (cola) { this.enviador.enviar(mensaje, cola); return; }
+
+        this.enviador.enviar(mensaje);
     }
 
 
@@ -133,7 +161,7 @@ export class RabbitDespachadorMensaje implements DespachadorMensajeria {
      *  @example  Ejemplo para enviar a solo un exchange de acuerdo a una llave "/exchange/${nombre de Exchange}/{key}"
      *  @example Ejemplo para enviar a una queue /queue/{nombre_queue}
      */
-    public recibir(cola: string): Observable<Mensaje> {
+    public recibir(cola?: string): Observable<Mensaje> {
         return this.receptor.recibir(cola);
     }
 

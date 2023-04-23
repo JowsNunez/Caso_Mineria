@@ -35,7 +35,7 @@ export abstract class AbstractEnviadorMensajeria extends BaseRabbitMensajeria {
      * @param cola representa el nombre de la cola o exchange 
      * @param mensaje representa el contenido a enviar 
      */
-    public abstract enviar(cola: string, mensaje: Mensaje): void
+    public abstract enviar( mensaje: Mensaje,cola?: string): void
 }
 
 /**
@@ -46,7 +46,7 @@ export abstract class AbstractReceptorMensajeria extends BaseRabbitMensajeria {
      * @method recibir se encarga de recibir un mensaje a la cola de mensajes del Broker configurado
      * @param cola representa el nombre de la cola o exchange 
      */
-    public abstract recibir(cola: string): Observable<Mensaje>
+    public abstract recibir(cola?: string): Observable<Mensaje>
 }
 
 
@@ -94,6 +94,6 @@ export interface DespachadorMensajeria {
      * 
      * 
      */
-    recibir(cola: string): Observable<Mensaje>
+    recibir(cola?: string): Observable<Mensaje>
 
 }

@@ -1,0 +1,27 @@
+<div style="display: flex; align-items: center; justify-content: center;width: 100%; background-color: antiquewhite;
+padding: 10px; position: relative;">
+<div >
+
+ 
+<div *ngFor="let dto of semaforos" class="{{ dto.estado |semaforoToString}}" (click)="setCurrent(dto.idSemaforo)" style="cursor: pointer;border: 1px solid; width: 300px">
+    <p>{{ dto.idSemaforo }}</p>
+    
+    <p >{{ dto.estado |semaforoToString}}</p>
+    <p>{{ dto.tiempo }}</p>
+  </div>
+
+</div>
+<div>
+
+
+<div *ngIf="currentSelected" style="display: flex; flex-direction: column;" >
+    <span>{{currentSelected}}</span>
+    <span>estado</span>
+    <input [(ngModel)]="state"  type="text" name="" id="" >
+    <span>tiempo</span>
+    <input [(ngModel)]="tiempo"  type="number" name="" id="" value="tiempo">
+    
+    <button (click)="enviar()">enviar</button>
+</div>
+
+</div></div>
