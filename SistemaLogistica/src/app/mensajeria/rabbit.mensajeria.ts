@@ -56,7 +56,7 @@ export class RabbitEnviadorMensaje extends AbstractEnviadorMensajeria {
      * @param mensaje  representa el contenido a enviar
      */
     public override enviar(mensaje: Mensaje, cola: string,): void {
-        let destination = environment.exchangeEnvios;
+        let destination = environment.EXCHANGE_ENVIOS;
         let headers = {};
 
         if (cola) {
@@ -86,12 +86,12 @@ export class RabbitReceptorMensaje extends AbstractReceptorMensajeria {
     public override  recibir(cola?: string): Observable<Mensaje> {
         const subject = new Subject<Mensaje>();
 
-        let destination = environment.queueRecibidos;
+        let destination = environment.QUEUE_RECIBIDOS;
         let headers = {};
 
         if (cola) {
             //TODO: refactorizar
-            destination += cola
+            destination +="/semaforos"
             headers = { key: cola };
         }
 

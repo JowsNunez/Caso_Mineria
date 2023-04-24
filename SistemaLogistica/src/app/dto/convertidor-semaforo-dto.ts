@@ -9,8 +9,8 @@ export class ConvertidorSemaforoDTO implements ConvertidorObjetoDTO<Semaforo, Se
         const { lat, lng } = dto.opciones.position as google.maps.LatLngLiteral
 
         const ubicacion: Ubicacion = {
-            latitud: lat,
-            longitud: lng
+            latitude: lat,
+            longitude: lng
         }
 
         const semaforo: Semaforo = {
@@ -24,6 +24,7 @@ export class ConvertidorSemaforoDTO implements ConvertidorObjetoDTO<Semaforo, Se
     }
     public convertirObjetoAdto(objeto: Semaforo): SemaforoDto {
         if(!objeto) throw new Error("");
+        console.log(objeto.ubicacion)
         
         return {
             idSemaforo: objeto.idSemaforo,
@@ -31,8 +32,8 @@ export class ConvertidorSemaforoDTO implements ConvertidorObjetoDTO<Semaforo, Se
             icon: this.verificarEstado(objeto.estado),
             opciones: {
                 position: {
-                    lat: objeto.ubicacion.latitud,
-                    lng: objeto.ubicacion.longitud,
+                    lat: objeto.ubicacion.latitude,
+                    lng: objeto.ubicacion.longitude,
                 }
             },
             tiempo: objeto.tiempo
@@ -45,11 +46,11 @@ export class ConvertidorSemaforoDTO implements ConvertidorObjetoDTO<Semaforo, Se
 
         switch (estado) {
             case Estado.VERDE:
-                return "verde"
+                return "/assets/verde.png"
             case Estado.ROJO:
-                return "rojo"
+                return "/assets/rojo.png"
             case Estado.AMARILLO:
-                return "amarillo"
+                return "/assets/amarillo.png"
             default:
                 return "verde"
         }

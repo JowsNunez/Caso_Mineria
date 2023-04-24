@@ -26,7 +26,7 @@ export class SemaforoService {
     if (!semaforoDto) throw new Error("");
     if(estado) semaforoDto.estado=estado
     if(tiempo&&tiempo>100) semaforoDto.tiempo =tiempo
-
+    
     const semaforo = this.convertidor.convertirDTOaObjeto(semaforoDto);
 
   
@@ -58,12 +58,12 @@ export class SemaforoService {
   public recibirDeSemaforo(idSemaforo: string) {
     if (!idSemaforo||idSemaforo==="") throw new Error("")
 
-    this.mensajeDispatcher.recibir("/"+idSemaforo).subscribe(mensaje => {
+    this.mensajeDispatcher.recibir("/semaforos").subscribe(mensaje => {
     
       const data = mensaje.data
     
       if (!data) throw new Error("")
-
+      console.log(data)
       
       const semaforo: Semaforo = JSON.parse(data)
       const dto: SemaforoDto = this.convertidor.convertirObjetoAdto(semaforo)
@@ -78,6 +78,8 @@ export class SemaforoService {
         semaforoDto.tiempo = dto.tiempo;
         semaforoDto.icon = dto.icon;
         semaforoDto.opciones = dto.opciones;
+      }else{
+        this.semaforos.push(dto)
       }
 
     })
@@ -95,40 +97,40 @@ export class SemaforoService {
  
 
   public init() {
-    const aux: Semaforo[] = [{
-      idSemaforo: "semaforo_1",
-      estado: Estado.ROJO,
-      tiempo: 2000,
-      ubicacion: { latitud: 30.96719745678408, longitud: -110.32206220589997 }
-    },
-    {
-      idSemaforo: "semaforo_2",
-      estado: Estado.AMARILLO,
-      tiempo: 1500,
-      ubicacion: { latitud: 30.963636336478395, longitud: -110.32739755907858 }
-    },
-    {
-      idSemaforo: "semaforo_4",
-      estado: Estado.VERDE,
-      tiempo: 2500,
-      ubicacion: { latitud: 30.96711660132356, longitud: -110.32246927576035 }
-    },
-    {
-      idSemaforo: "semaforo_5",
-      estado: Estado.ROJO,
-      tiempo: 3000,
-      ubicacion: { latitud: 30.965512534191355, longitud: -110.32051756204399 }
-    },
-    {
-      idSemaforo: "semaforo_6",
-      estado: Estado.VERDE,
-      tiempo: 2000,
-      ubicacion: { latitud: 30.964567, longitud: -110.322097 }
-    }]
+    // const aux: Semaforo[] = [{
+    //   idSemaforo: "semaforo_1",
+    //   estado: Estado.ROJO,
+    //   tiempo: 2000,
+    //   ubicacion: { latitud: 30.96719745678408, longitud: -110.32206220589997 }
+    // },
+    // {
+    //   idSemaforo: "semaforo_2",
+    //   estado: Estado.AMARILLO,
+    //   tiempo: 1500,
+    //   ubicacion: { latitud: 30.963636336478395, longitud: -110.32739755907858 }
+    // },
+    // {
+    //   idSemaforo: "semaforo_4",
+    //   estado: Estado.VERDE,
+    //   tiempo: 2500,
+    //   ubicacion: { latitud: 30.96711660132356, longitud: -110.32246927576035 }
+    // },
+    // {
+    //   idSemaforo: "semaforo_5",
+    //   estado: Estado.ROJO,
+    //   tiempo: 3000,
+    //   ubicacion: { latitud: 30.965512534191355, longitud: -110.32051756204399 }
+    // },
+    // {
+    //   idSemaforo: "semaforo_6",
+    //   estado: Estado.VERDE,
+    //   tiempo: 2000,
+    //   ubicacion: { latitud: 30.964567, longitud: -110.322097 }
+    // }]
 
-    aux.forEach(e => {
-      this.semaforos.push(this.convertidor.convertirObjetoAdto(e))
-    })
+    // aux.forEach(e => {
+    //   this.semaforos.push(this.convertidor.convertirObjetoAdto(e))
+    // })
     
 
 

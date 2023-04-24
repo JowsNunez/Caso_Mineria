@@ -1,0 +1,31 @@
+<div  style="position: relative; display:flex; justify-content: center;">
+<div *ngIf="apiLoaded | async" >
+    <google-map   
+  width="100vw"
+  height="100vh"
+  [center]=center
+  [options]="optionsMap"
+  
+  >
+ 
+  <map-marker  
+  *ngFor="let marker of getSemaforos()"  
+  [options]=marker.opciones [icon]="marker.icon" 
+  [title]="marker.idSemaforo" 
+  (mapClick)="getCurrent(marker)" 
+  [clickable]="true"></map-marker>
+  
+
+</google-map>
+
+</div>
+
+
+
+</div>
+<div *ngIf="current">
+<control-semaforo
+ [currentSelected]="current" ></control-semaforo>
+</div>
+
+<!-- </ng-component> -->

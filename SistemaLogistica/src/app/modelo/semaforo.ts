@@ -9,8 +9,8 @@ export declare class Semaforo {
 
 
 export enum Estado{
-    NONE,
-    VERDE,
-    ROJO,
-    AMARILLO
+    NONE="NONE",
+    VERDE="VERDE",
+    ROJO="ROJO",
+    AMARILLO="AMARILLO"
 }

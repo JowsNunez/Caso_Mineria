@@ -7,11 +7,15 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SemaforoPipe } from './semaforo.pipe';
+import { MapComponent } from './component/map/map.component';
+import { ControlSemaforoComponent } from './component/control-semaforo/control-semaforo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SemaforoPipe
+    SemaforoPipe,
+    MapComponent,
+    ControlSemaforoComponent
   ],
   imports: [
     BrowserModule,

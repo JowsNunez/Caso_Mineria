@@ -1,0 +1,26 @@
+<div class="control shadow">
+
+
+
+   
+    <div  *ngIf="currentSelected" class="contenido">
+
+
+        <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 20px;">
+            <span >{{currentSelected.idSemaforo}}</span>
+            <img src="{{currentSelected.icon}}" alt="estado.png" />
+        </div>
+
+            <select [(ngModel)]="nuevoEstado" (change)="onEstadoSeleccionado($event)" > 
+                <option *ngFor="let estado of estados"  [value]="estado">{{estado}}</option>
+            </select>
+            <!-- <input [(ngModel)]="nuevoEstado" type="text" name="" id=""> -->
+            <span>Tiempo</span>
+            <input [(ngModel)]="tiempo"  type="number" name="" id="" >
+
+            <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                <button (click)="cancelar();  " >Cancelar</button>
+                <button (click)="enviar();" >Guardar</button>
+            </div>
+        </div>
+    </div>
