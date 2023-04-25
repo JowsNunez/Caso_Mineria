@@ -13,7 +13,7 @@ export interface Mensaje {
 
 
 /**
- * @abstract @class BaseRabbitMensajeria Clase abstracta que utiliza la configuracion para utilizar rabbit como broker.
+ * @abstract @class BaseRabbitMensajeria Clase abstracta que utiliza la configuracion para rabbit con la libreria @angular/RxStomp.
  *     
  */
 export abstract class BaseRabbitMensajeria {
@@ -27,7 +27,7 @@ export abstract class BaseRabbitMensajeria {
 }
 
 /**
- * @abstract @class AbstractEnviadorMensajeria, clase hija de BaseRabbitMensajeria con un metodo abstracto
+ * @abstract @class AbstractEnviadorMensajeria, clase hija de BaseRabbitMensajeria con el metodo abstracto enviar
  */
 export abstract class AbstractEnviadorMensajeria extends BaseRabbitMensajeria {
     /**
@@ -39,7 +39,7 @@ export abstract class AbstractEnviadorMensajeria extends BaseRabbitMensajeria {
 }
 
 /**
- * @abstract @class AbstractReceptorMensajeria, clase hija de BaseRabbitMensajeria con un metodo abstracto
+ * @abstract @class AbstractReceptorMensajeria, clase hija de BaseRabbitMensajeria con el metodo abstracto recibir
  */
 export abstract class AbstractReceptorMensajeria extends BaseRabbitMensajeria {
     /**
@@ -87,8 +87,8 @@ export interface DespachadorMensajeria {
 
 
     /**
-     * @method enviar Método que hace la llamada al método enviar dentro de la clase Concreta del tipo AbstractEnviadorMensajeria
-     * @param cola representa el nombre de la cola, exchange a enviar
+     * @method recibir Método que hace la llamada al método enviar dentro de la clase Concreta del tipo AbstractEnviadorMensajeria
+     * @param cola representa el nombre de la cola, exchange a recibir
      * @param mensaje representa un mensaje a enviar
      * 
      * 

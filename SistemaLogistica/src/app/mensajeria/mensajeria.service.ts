@@ -1,5 +1,5 @@
 import { Injectable ,Inject} from '@angular/core';
-import { DespachadorMensajeria, Mensaje } from './configuracion.mensaje';
+import { DespachadorMensajeria, Mensaje } from './mensajeria.configuracion';
 import {Observable} from 'rxjs'
 
 @Injectable({

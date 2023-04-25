@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { DespachadorMensajeria } from '../mensajeria/configuracion.mensaje';
+import { DespachadorMensajeria } from '../mensajeria/mensajeria.configuracion';
 import { SemaforoDto } from '../dto/semaforo-dto';
 import { ConvertidorSemaforoDTO } from '../dto/convertidor-semaforo-dto';
 import { ConvertidorObjetoDTO } from '../dto/convertidor-objeto-dto';

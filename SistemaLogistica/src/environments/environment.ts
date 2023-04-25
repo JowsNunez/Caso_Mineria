@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   EXCHANGE_ENVIOS: "/exchange/envio.semaforo",
-  QUEUE_RECIBIDOS: "/exchange/envio.semaforo",
+  EXCHANGE_CAMBIOS: "/exchange/envio.semaforo/semaforo.",
   MAPS_KEY:'AIzaSyA5BPuyZLsyO0uIg6LTGjbL-xxJhWwBePs'
 };
 

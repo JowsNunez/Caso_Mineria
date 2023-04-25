@@ -11,7 +11,7 @@ import { SemaforoService } from 'src/app/service/semaforo.service';
 export class ControlSemaforoComponent implements OnInit {
   @Input("currentSelected") currentSelected :SemaforoDto |undefined;
   @Input("nuevoEstado") nuevoEstado:Estado=Estado.NONE
-  @Input("tiempo") tiempo: number=0
+  @Input("tiempo") tiempo: number=50000
   
  
 
@@ -34,7 +34,7 @@ export class ControlSemaforoComponent implements OnInit {
   }
   
   cancelar(){
-
+      this.currentSelected=undefined
   }
   estados:Estado[] =[Estado.VERDE,Estado.AMARILLO,Estado.ROJO]
 

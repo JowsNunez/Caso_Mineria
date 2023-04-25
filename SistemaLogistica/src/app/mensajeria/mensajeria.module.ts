@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RxStompService } from './stomp.service';
 import { rxStompServiceFactory } from './stomp.service.factory';
-import { RabbitDespachadorMensaje } from './rabbit.mensajeria';
+import { RabbitDespachadorMensaje } from './mensajeria.rabbit';
 
 
 

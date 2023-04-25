@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MensajeriaService } from './mensajeria/mensajeria.service';
-import { Mensaje } from './mensajeria/configuracion.mensaje';
+import { Mensaje } from './mensajeria/mensajeria.configuracion';
 import { SemaforoService } from './service/semaforo.service';
 import { SemaforoDto } from './dto/semaforo-dto';
 import { Estado } from './modelo/semaforo';

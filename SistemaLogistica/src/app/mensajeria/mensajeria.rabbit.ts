@@ -4,7 +4,7 @@ import {
     DespachadorMensajeria,
     Mensaje,
     MensajeriaFactory
-} from "./configuracion.mensaje";
+} from "./mensajeria.configuracion";
 import { Injectable } from '@angular/core';
 import { RxStompService } from "./stomp.service";
 import { Observable, Subject } from "rxjs"
@@ -56,13 +56,14 @@ export class RabbitEnviadorMensaje extends AbstractEnviadorMensajeria {
      * @param mensaje  representa el contenido a enviar
      */
     public override enviar(mensaje: Mensaje, cola: string,): void {
-        let destination = environment.EXCHANGE_ENVIOS;
+        let destination = environment.EXCHANGE_CAMBIOS;
         let headers = {};
 
         if (cola) {
             //TODO: refactorizar
-            destination += "/" + cola
+            destination +=  cola
             headers = { key: cola };
+            debugger
         }
 
         
@@ -86,7 +87,7 @@ export class RabbitReceptorMensaje extends AbstractReceptorMensajeria {
     public override  recibir(cola?: string): Observable<Mensaje> {
         const subject = new Subject<Mensaje>();
 
-        let destination = environment.QUEUE_RECIBIDOS;
+        let destination = environment.EXCHANGE_ENVIOS;
         let headers = {};
 
         if (cola) {
