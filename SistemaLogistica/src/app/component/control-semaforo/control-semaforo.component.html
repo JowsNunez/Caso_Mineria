@@ -1,11 +1,12 @@
 <div  *ngIf="currentSelected" class="control shadow">
 
 
-
    
-    <div   class="contenido">
+    <div  class="contenido">
+    <div class="contenedor_boton">
+        <div class="btnClose" (click)="cancelar()"></div>
 
-
+    </div>
         <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 20px;">
             <span >{{currentSelected.idSemaforo}}</span>
             <img src="{{currentSelected.icon}}" alt="estado.png" />

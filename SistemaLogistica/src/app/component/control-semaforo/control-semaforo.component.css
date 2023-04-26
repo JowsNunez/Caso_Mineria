@@ -36,3 +36,47 @@
     margin: 5px;
 
 }
+
+   
+
+  .btnClose {
+    border: 1px solid gray;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all ease-in 200ms;
+}
+.btnClose:hover{
+    background-color: gray;
+}
+.btnClose:hover::after,.btnClose:hover::before{
+    
+    border-left: 2px solid rgb(221, 211, 211);
+
+}
+.btnClose:after {
+    content: '';
+    height: 18px;
+    margin: 0 auto;
+    border-left: 2px solid red;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 9px;
+}
+
+.btnClose:before {
+    content: '';
+    height: 18px;
+    border-left: 2px solid red;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 9px;
+}
+
+
+.contenedor_boton{
+    position: fixed;
+    right: 15px;
+}
