@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Bienvenido">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="55sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingTop="40dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_bienvenido"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:paddingTop="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnMapa"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="@string/map_btn"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="@color/gray"/>
+
+        <Button
+            android:id="@+id/btnReportCongestion"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="@string/congestion_btn"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="@color/gray"/>
+
+        <Button
+            android:id="@+id/btnReportTrip"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:text="@string/trip_btn"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="@color/gray"/>
+
+    </LinearLayout>
+
+    <Button
+    android:id="@+id/btnExit"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="100dp"
+    android:text="@string/exit_btn"
+    android:textColor="@color/black"
+    android:textStyle="bold"
+    android:backgroundTint="@color/gray"/>
+
+</LinearLayout>

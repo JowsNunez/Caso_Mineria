@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Minería App</string>
+    <string name="app_inicio">Inicio de Sesión</string>
+    <string name="nombretxt">Nombre de Usuario</string>
+    <string name="contraseñatxt">Constraseña</string>
+    <string name="iniciarSesion_btn">Iniciar Sesión</string>
+    <string name="UsuarioHint">Usuario</string>
+    <string name="ConstraseñaHint">Contraseña</string>
+    <string name="enviar_btn">Send</string>
+    <string name="cancelarEnvio_btn">Sent trip report</string>
+    <string name="finalizar_btn">Finalizar</string>
+
+    <string name="app_bienvenido">Bienvenido</string>
+    <string name="map_btn">Ver Mapa</string>
+    <string name="congestion_btn">Reportar Congestión</string>
+    <string name="trip_btn">Reportar Viaje</string>
+    <string name="exit_btn">Salir</string>
+
+    <string name="congestion_title">Congestion Report</string>
+    <string name="congestion_location">Location</string>
+    <string name="congestion_type">Congestion Type</string>
+    <string name="congestion_description">Description (optional)</string>
+    <string name="congestion_type_Accident">Accident</string>
+    <string name="congestion_type_Traffic">Traffic Light Failures</string>
+    <string name="congestion_type_Mecanic">Mecanic Failures</string>
+
+    <string name="report_title">Reporte de Viaje</string>
+    <string name="report_origin">Origin</string>
+    <string name="report_destination">Destination</string>
+    <string name="report_vehicle">Vehicle</string>
+    <string name="report_driver">Driver</string>
+    <string name="report_weight">Weight</string>
+    <string name="report_material">Material</string>
+    <string name="report_end_date">End Date</string>
+    <string name="report_end_time">End Time</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="details_trip">Detalle de Viaje</string>
+
+</resources>
