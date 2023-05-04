@@ -9,6 +9,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { SemaforoPipe } from './semaforo.pipe';
 import { MapComponent } from './component/map/map.component';
 import { ControlSemaforoComponent } from './component/control-semaforo/control-semaforo.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ControlSemaforoComponent } from './component/control-semaforo/control-s
     HttpClientModule,
     HttpClientJsonpModule,FormsModule,
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

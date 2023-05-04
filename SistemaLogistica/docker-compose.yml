@@ -1,0 +1,23 @@
+version: '3'
+services:
+    sistemalogistica:
+      build: .
+      deploy:
+        replicas: 3
+      volumes: 
+       - ./dist/sistema-logistica:/var/www/sistemalogistica
+      networks:
+       - load
+
+    loadbalancer:
+      build: ./loadbalancer
+      container_name: loadbalancer
+      ports:
+      - 80:8080
+      networks:
+      - load
+      depends_on:
+      - sistemalogistica
+networks:
+  load:
+    driver: bridge
