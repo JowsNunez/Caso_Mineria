@@ -44,8 +44,15 @@ class MapaFragment : Fragment() , OnMapReadyCallback, CoroutineScope, MensajeLis
         _binding = FragmentMapaBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val btn_sheet=binding.btnBottomSheet
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         mapFragment?.getMapAsync(this)
+
+        btn_sheet.setOnClickListener {
+            SheetDetalleViaje().show(childFragmentManager, "SheetDetalleViaje")
+        }
+
 
 
         semaforoReceptor=SemaforoReceptor()
