@@ -37,5 +37,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="details_trip">Detalle de Viaje</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_mapa">Mapa</string>
+    <string name="title_alerta">Alerta</string>
+    <string name="title_reporte">Reporte</string>
+    <string name="title_perfil">Perfil</string>
 
 </resources>
