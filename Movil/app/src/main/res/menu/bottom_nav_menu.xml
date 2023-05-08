@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_mapa"
+        android:icon="@drawable/mapa_btn_image"
+        android:title="@string/title_mapa" />
+
+    <item
+        android:id="@+id/navigation_alerta"
+        android:icon="@drawable/alerta_btn_image"
+        android:title="@string/title_alerta" />
+
+    <item
+        android:id="@+id/navigation_reporte"
+        android:icon="@drawable/reporte_btn_image"
+        android:title="@string/title_reporte" />
+    <item
+        android:id="@+id/navigation_perfil"
+        android:icon="@drawable/perfil_btn_image"
+        android:title="@string/title_reporte" />
+
+</menu>

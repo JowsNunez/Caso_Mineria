@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_mapa">
+
+    <fragment
+        android:id="@+id/navigation_mapa"
+        android:name="garcia.hiram.mineriaapp.ui.mapa.MapaFragment"
+        android:label="@string/title_mapa"
+        tools:layout="@layout/fragment_mapa" />
+
+    <fragment
+        android:id="@+id/navigation_alerta"
+        android:name="garcia.hiram.mineriaapp.ui.alerta.AlertaFragment"
+        android:label="@string/title_alerta"
+        tools:layout="@layout/fragment_alerta" />
+
+    <fragment
+        android:id="@+id/navigation_reporte"
+        android:name="garcia.hiram.mineriaapp.ui.reporte.ReporteFragment"
+        android:label="@string/title_reporte"
+        tools:layout="@layout/fragment_reporte" />
+    <fragment
+        android:id="@+id/navigation_perfil"
+        android:name="garcia.hiram.mineriaapp.ui.perfil.PerfilFragment"
+        android:label="@string/title_reporte"
+        tools:layout="@layout/fragment_perfil" />
+</navigation>

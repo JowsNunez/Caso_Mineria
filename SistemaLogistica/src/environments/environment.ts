@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   EXCHANGE_ENVIOS: "/exchange/envio.semaforo",
   EXCHANGE_CAMBIOS: "/exchange/envio.semaforo/semaforo.",
-  MAPS_KEY:'AIzaSyA5BPuyZLsyO0uIg6LTGjbL-xxJhWwBePs'
+  MAPS_KEY:'AIzaSyA5BPuyZLsyO0uIg6LTGjbL-xxJhWwBePs',
+  BROKER_HOST:'ws://localhost:15674/ws',
+  BROKER_USER:'guest',
+  BROKER_PASS:'guest'
 };
 
 /*

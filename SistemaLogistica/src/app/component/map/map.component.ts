@@ -31,7 +31,10 @@ export class MapComponent implements OnInit {
         west: this.center.lng - 0.007
       }
 
-    }
+    },mapTypeControl:false,
+    streetViewControl: false,
+    zoomControl:true,
+    fullscreenControl:false
   }
   apiLoaded: Observable<boolean>;
 
