@@ -10,13 +10,19 @@ import { SemaforoPipe } from './semaforo.pipe';
 import { MapComponent } from './component/map/map.component';
 import { ControlSemaforoComponent } from './component/control-semaforo/control-semaforo.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MenuComponent } from './component/menu/menu.component';
+import { LoginComponent } from './component/login/login.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SemaforoPipe,
     MapComponent,
-    ControlSemaforoComponent
+    ControlSemaforoComponent,
+    MenuComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
