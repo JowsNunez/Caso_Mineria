@@ -338,17 +338,5 @@
         android:layout_marginTop="40dp"
         android:enabled="true"/>
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="@string/cancelarEnvio_btn"
-        android:backgroundTint="@color/bluegray_dark"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:enabled="false"/>
-
-
 
 </LinearLayout>

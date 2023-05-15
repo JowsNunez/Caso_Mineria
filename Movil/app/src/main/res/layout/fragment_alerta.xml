@@ -56,23 +56,29 @@
             android:orientation="vertical"
             android:layout_marginLeft="46dp">
 
-            <CheckBox
+            <RadioGroup
+                android:id="@+id/radio_type_congestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <RadioButton
                 android:id="@+id/checkbox_Accident"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/congestion_type_Accident"/>
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/checkbox_Traffic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/congestion_type_Traffic"/>
 
-            <CheckBox
+            <RadioButton
                 android:id="@+id/checkbox_Mecanic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/congestion_type_Mecanic"/>
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -90,9 +96,14 @@
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:inputType="textMultiLine"
+            android:gravity="fill_horizontal"
+            android:padding="6dp"
+            android:hint="Describe Congestion"
             android:background="@drawable/borde2"/>
 
         <Button
+            android:id="@+id/btn_enviar_congestion"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
@@ -103,16 +114,6 @@
             android:layout_gravity="center"
             android:enabled="true"/>
 
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="@string/cancelarEnvio_btn"
-            android:backgroundTint="@color/bluegray_dark"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:enabled="false"/>
     </LinearLayout>
 
 </ScrollView>

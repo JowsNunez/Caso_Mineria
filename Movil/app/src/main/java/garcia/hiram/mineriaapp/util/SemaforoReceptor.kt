@@ -17,7 +17,10 @@ class SemaforoReceptor: MensajeAction {
 
     private lateinit var rabbitReceptor:  RabbitReceptor
     private var observadores :ArrayList<MensajeListener> =ArrayList()
-    val  semaforos:MutableLiveData<ConcurrentHashMap<String,Semaforo>> =MutableLiveData()
+    companion object{
+        val  semaforos:MutableLiveData<ConcurrentHashMap<String,Semaforo>> =MutableLiveData()
+
+    }
     private lateinit var channel: Channel
 
     // se inicia el map con los semaforos de manera concurrente por los cambios
@@ -102,7 +105,7 @@ class SemaforoReceptor: MensajeAction {
 
     override fun actualizarListener() {
         observadores.forEach {
-            observer->observer.actualizar()
+            observer->observer.actualizar("Semaforo")
         }
     }
 }

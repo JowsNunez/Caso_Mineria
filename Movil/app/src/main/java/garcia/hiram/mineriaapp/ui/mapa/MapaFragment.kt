@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import garcia.hiram.mineriaapp.R
 import garcia.hiram.mineriaapp.databinding.FragmentMapaBinding
+import garcia.hiram.mineriaapp.util.CongestionReceptor
 import garcia.hiram.mineriaapp.util.MensajeListener
 import garcia.hiram.mineriaapp.util.SemaforoReceptor
 import kotlinx.coroutines.*
@@ -32,6 +33,7 @@ class MapaFragment : Fragment() , OnMapReadyCallback, CoroutineScope, MensajeLis
 
     private lateinit var googleMap:  GoogleMap;
     private lateinit var semaforoReceptor: SemaforoReceptor
+    private lateinit var congestionReceptor: CongestionReceptor
 
     private val binding get() = _binding!!
 
@@ -56,6 +58,8 @@ class MapaFragment : Fragment() , OnMapReadyCallback, CoroutineScope, MensajeLis
 
 
         semaforoReceptor=SemaforoReceptor()
+        congestionReceptor= CongestionReceptor()
+        congestionReceptor.agregarListener(this)
         semaforoReceptor.agregarListener(this)
         job = SupervisorJob()
         // se inicia en un hilo fuera de la vista la conexion con rabbitmq
@@ -63,6 +67,8 @@ class MapaFragment : Fragment() , OnMapReadyCallback, CoroutineScope, MensajeLis
             withContext(Dispatchers.Default) {
                 semaforoReceptor.init()
                 semaforoReceptor.recibir()
+                congestionReceptor.init()
+                congestionReceptor.recibir()
             }
 
         }
@@ -94,13 +100,15 @@ class MapaFragment : Fragment() , OnMapReadyCallback, CoroutineScope, MensajeLis
 
     }
 
-    override fun actualizar() {
+    override fun actualizar(accion:String) {
+
+
         // al llegar un mensaje se ejecuta esta accion desde la implementacion de  MensajeAction
         requireActivity().runOnUiThread {
             // se eliminan los marcadores
             googleMap.clear()
             // se recorre el map con los semaforos
-            semaforoReceptor.semaforos.value?.forEach{semaforo->
+            SemaforoReceptor.semaforos.value?.forEach{semaforo->
                 val currentSemaforo=semaforo.value
                 val icon = semaforoReceptor.verificarEstado(currentSemaforo.estado)
                 // se agrega el marcador con la ubicacion y el icono correspondiente
@@ -111,8 +119,28 @@ class MapaFragment : Fragment() , OnMapReadyCallback, CoroutineScope, MensajeLis
                         .title(currentSemaforo.idSemaforo)
                 )
             }
-            // mensaje de consola
-            Log.d(this.javaClass.name.toString(),semaforoReceptor.semaforos.value.toString())
+
+            CongestionReceptor.congestiones.value?.forEach { congestion ->
+
+                    val alfred:List<String> =congestion.location.split(",")
+                    val latitude = alfred[0].toDouble()
+                    val longitude = alfred[1].toDouble()
+
+
+                    googleMap.addMarker(
+                        MarkerOptions()
+                            .position(LatLng(latitude,  longitude))
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.alerta))
+                            .title(congestion.type.name)
+                            .snippet(congestion.description)
+
+
+                    )
+
+
+            }
+
+
         }
     }
 }
