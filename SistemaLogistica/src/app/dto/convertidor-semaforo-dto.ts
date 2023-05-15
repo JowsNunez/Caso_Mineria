@@ -52,7 +52,7 @@ export class ConvertidorSemaforoDTO implements ConvertidorObjetoDTO<Semaforo, Se
             case Estado.AMARILLO:
                 return "/assets/amarillo.png"
             default:
-                return "verde"
+                return "/assets/verde.png"
         }
     }
 

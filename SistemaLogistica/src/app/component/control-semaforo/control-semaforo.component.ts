@@ -24,7 +24,7 @@ export class ControlSemaforoComponent implements OnInit {
   }
 
   enviar(){
-    alert(this.currentSelected?.idSemaforo+""+this.nuevoEstado +""+this.tiempo)
+   
     if(this.currentSelected){
 
       this.semaforoService.enviarSemaforo(this.currentSelected?.idSemaforo,this.nuevoEstado,this.tiempo)

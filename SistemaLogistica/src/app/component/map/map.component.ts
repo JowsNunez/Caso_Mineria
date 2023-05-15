@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormArray } from '@angular/forms';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Observable, catchError, map, of } from 'rxjs';
+import { CongestionDto } from 'src/app/dto/congestion-dto';
 import { SemaforoDto } from 'src/app/dto/semaforo-dto';
 import { Estado } from 'src/app/modelo/semaforo';
+import { CongestionService } from 'src/app/service/congestion.service';
 import { SemaforoService } from 'src/app/service/semaforo.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +21,7 @@ export class MapComponent implements OnInit {
 
   estado: Estado = Estado.NONE
   tiempo: number = 0
-  currentId="";
+  currentId = "";
   current: SemaforoDto | undefined
   center: google.maps.LatLngLiteral = { lat: 30.967011756830306, lng: -110.32392624978195 }
   optionsMap: google.maps.MapOptions = {
@@ -31,15 +34,15 @@ export class MapComponent implements OnInit {
         west: this.center.lng - 0.007
       }
 
-    },mapTypeControl:false,
+    }, mapTypeControl: false,
     streetViewControl: false,
-    zoomControl:true,
-    fullscreenControl:false
+    zoomControl: true,
+    fullscreenControl: false
   }
   apiLoaded: Observable<boolean>;
 
 
-  constructor(httpClient: HttpClient, private semaforoService: SemaforoService) {
+  constructor(httpClient: HttpClient, private semaforoService: SemaforoService, private congestionService: CongestionService) {
     this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=' + environment.MAPS_KEY, 'callback')
       .pipe(
         map(() => true),
@@ -49,7 +52,7 @@ export class MapComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.congestionService.recibir()
   }
 
 
@@ -60,13 +63,17 @@ export class MapComponent implements OnInit {
   getCurrent(marker: SemaforoDto) {
 
     this.current = marker
-   
+
+  }
+
+  getCongestion(): CongestionDto[] {
+    return this.congestionService.congestiones;
   }
 
   onActualizar() {
-    
+
     if (this.currentId) {
-      
+
       this.semaforoService.enviarSemaforo(this.currentId, this.estado, this.tiempo);
 
     }
@@ -76,26 +83,40 @@ export class MapComponent implements OnInit {
   }
 
   obtenerEstado(value: Estado) {
-    
-    if(value=='VERDE'){
-      this.estado=Estado.VERDE
+
+    if (value == 'VERDE') {
+      this.estado = Estado.VERDE
     }
-    if(value=='AMARILLO'){
-      this.estado=Estado.AMARILLO
+    if (value == 'AMARILLO') {
+      this.estado = Estado.AMARILLO
     }
-    if(value=='ROJO'){
-      this.estado=Estado.ROJO
+    if (value == 'ROJO') {
+      this.estado = Estado.ROJO
     }
-   
+
   }
   obtenerTiempo(value: number) {
-    
+
     this.tiempo = value
-    
+
   }
 
-  obtenerIdSemaforo(value:string){
-    
-   this.currentId= value;
+  obtenerIdSemaforo(value: string) {
+
+    this.currentId = value;
   }
+  public openInfoWindow(marker: MapMarker, infoWindow: MapInfoWindow) {
+    infoWindow.open(marker);
+  }
+
+  public resolver(id: number) {
+  
+      this.congestionService.resolver(id)
+  }
+
+  
+  public get service() : CongestionService {
+    return this.congestionService
+  }
+  
 }

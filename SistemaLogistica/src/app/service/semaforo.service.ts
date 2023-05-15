@@ -33,14 +33,14 @@ export class SemaforoService {
 
     const data = JSON.stringify(semaforo)
 
-    this.mensajeDispatcher.enviar(semaforo.idSemaforo, { data })
+    this.mensajeDispatcher.enviar("/exchange/envio.semaforo/semaforo."+semaforo.idSemaforo, { data })
 
 
 
   }
   public recibirSemaforos() {
 
-    this.mensajeDispatcher.recibir().subscribe(mensaje => {
+    this.mensajeDispatcher.recibir("/exchange/envio.semaforo/semaforos").subscribe(mensaje => {
       const data = mensaje.data
       if (!data) throw new Error("")  
        const semaforo = JSON.parse(data)
@@ -58,16 +58,14 @@ export class SemaforoService {
   public recibirDeSemaforo(idSemaforo: string) {
     if (!idSemaforo||idSemaforo==="") throw new Error("")
 
-    this.mensajeDispatcher.recibir("/semaforos").subscribe(mensaje => {
+    this.mensajeDispatcher.recibir("/exchange/envio.semaforo/semaforos").subscribe(mensaje => {
     
       const data = mensaje.data
     
       if (!data) throw new Error("")
-      console.log(data)
       
       const semaforo: Semaforo = JSON.parse(data)
       const dto: SemaforoDto = this.convertidor.convertirObjetoAdto(semaforo)
-      console.log(dto)
       const semaforoDto: SemaforoDto | undefined = this.semaforos.find((e) => {
         
         return e.idSemaforo === semaforo.idSemaforo});

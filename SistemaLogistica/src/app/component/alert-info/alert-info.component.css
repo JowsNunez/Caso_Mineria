@@ -1,0 +1,22 @@
+.info__map__alert{
+    display: flex;
+    flex-direction: column;
+   
+    margin: 3px; 
+}
+
+.info__map__alert h4{
+   
+     margin: 2px;
+}
+.info__map__alert p{
+     margin: 2px;
+}
+
+
+.info__map__alert  button{
+    width: 50px;
+     margin: 2px;
+     margin-top: auto;
+}
+

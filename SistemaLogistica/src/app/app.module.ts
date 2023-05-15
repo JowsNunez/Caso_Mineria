@@ -13,6 +13,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MenuComponent } from './component/menu/menu.component';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
+import { AlertInfoComponent } from './component/alert-info/alert-info.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeComponent } from './component/home/home.component';
     ControlSemaforoComponent,
     MenuComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AlertInfoComponent
   ],
   imports: [
     BrowserModule,

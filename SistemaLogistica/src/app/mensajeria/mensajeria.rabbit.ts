@@ -55,20 +55,9 @@ export class RabbitEnviadorMensaje extends AbstractEnviadorMensajeria {
      * @param cola representa el nombre de la __queue, exchange__ 
      * @param mensaje  representa el contenido a enviar
      */
-    public override enviar(mensaje: Mensaje, cola: string,): void {
-        let destination = environment.EXCHANGE_CAMBIOS;
-        let headers = {};
-
-        if (cola) {
-            //TODO: refactorizar
-            destination +=  cola
-            headers = { key: cola };
-            debugger
-        }
-
-        
-
-        this.serviceStomp.publish({ destination: destination,/**headers**/ body: mensaje.data })
+    public override enviar(mensaje: Mensaje, cola: string): void {
+       
+        this.serviceStomp.publish({ destination: cola,/**headers**/ body: mensaje.data })
     }
 
 }
@@ -87,21 +76,12 @@ export class RabbitReceptorMensaje extends AbstractReceptorMensajeria {
     public override  recibir(cola?: string): Observable<Mensaje> {
         const subject = new Subject<Mensaje>();
 
-        let destination = environment.EXCHANGE_ENVIOS;
-        let headers = {};
-
-        if (cola) {
-            //TODO: refactorizar
-            destination +="/semaforos"
-            headers = { key: cola };
-        }
+      
 
 
-
-        this.serviceStomp.watch({ destination: destination,/**subHeaders:headers**/ }).subscribe(msg => {
+        this.serviceStomp.watch({ destination: cola,/**subHeaders:headers**/ }).subscribe(msg => {
 
             const mensaje: Mensaje = { data: msg.body };
-            console.log(mensaje)
             subject.next(mensaje);
 
         });
